@@ -316,7 +316,6 @@ Register Now
 </ul>
 
 </section>
-
 <section id="register">
 
 <h2>Reserve Your Seat Today</h2>
@@ -325,9 +324,34 @@ Register Now
 Registration Fee: ₹69
 </p>
 
-<a class="btn" href="https://forms.gle/gNym3K6sFyNPM1FW6">
+<form id="registrationForm" style="max-width:500px;margin:auto;">
+
+<input type="text" name="name" placeholder="Full Name" required
+style="width:100%;padding:15px;margin:10px 0;border-radius:10px;border:none;">
+
+<input type="number" name="age" placeholder="Age" required
+style="width:100%;padding:15px;margin:10px 0;border-radius:10px;border:none;">
+
+<input type="email" name="email" placeholder="Email Address" required
+style="width:100%;padding:15px;margin:10px 0;border-radius:10px;border:none;">
+
+<input type="tel" name="mobile" placeholder="Mobile Number" required
+style="width:100%;padding:15px;margin:10px 0;border-radius:10px;border:none;">
+
+<input type="text" name="city" placeholder="City" required
+style="width:100%;padding:15px;margin:10px 0;border-radius:10px;border:none;">
+
+<button type="submit" class="btn">
 Proceed To Registration
-</a>
+</button>
+
+</form>
+
+<div id="successMessage" style="display:none;margin-top:20px;color:#FFD700;font-size:20px;">
+✅ Registration Successful!
+</div>
+
+</section>
 
 </section>
 
@@ -452,8 +476,41 @@ days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Second
 
 </script>
 
+<script>
+
+document.getElementById("registrationForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let formData = new FormData(this);
+
+fetch("https://script.google.com/macros/s/AKfycbyDvdMuEmQkN-l6pJbOGVrW2QWrj0m_qTiPVcYpCfcwn6xM6DP1uu1HNttGnIs1wFIG/exec", {
+method: "POST",
+body: formData
+})
+
+.then(response => response.text())
+
+.then(data => {
+
+document.getElementById("successMessage").style.display = "block";
+
+document.getElementById("registrationForm").reset();
+
+})
+
+.catch(error => {
+
+alert("Something went wrong. Please try again.");
+
+});
+
+});
+
+</script>
+
 </body>
 </html>
 
-
-</section>
+</body>
+</html>
