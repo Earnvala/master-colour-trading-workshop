@@ -513,11 +513,25 @@ body: formData
 
 .then(data => {
 
+if(data=="EXISTS"){
+
+alert("You have already registered with this Email or Mobile Number.");
+
+return;
+
+}
+
 document.getElementById("successMessage").style.display = "block";
 
 document.getElementById("registrationForm").reset();
 
+document.querySelector("#registrationForm button").disabled = true;
+
+document.querySelector("#registrationForm button").innerHTML =
+"Registration Completed";
+
 })
+
 
 .catch(error => {
 
