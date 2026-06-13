@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Master Colour Trading Workshop</title>
 
 <style>
@@ -12,18 +13,38 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+scroll-behavior:smooth;
 }
 
 body{
-background:#000;
 font-family:Arial,sans-serif;
+background:#050505;
 color:white;
-text-align:center;
+line-height:1.6;
+}
+
+nav{
+position:sticky;
+top:0;
+background:rgba(0,0,0,0.95);
+padding:18px;
+display:flex;
+justify-content:center;
+gap:30px;
+z-index:1000;
+border-bottom:1px solid #222;
+}
+
+nav a{
+color:#FFD700;
+text-decoration:none;
+font-weight:bold;
 }
 
 .hero{
-padding:80px 20px;
-background:linear-gradient(180deg,#000000,#111111);
+padding:100px 20px;
+text-align:center;
+background:linear-gradient(180deg,#000,#111);
 }
 
 .badge{
@@ -31,32 +52,54 @@ display:inline-block;
 background:#FFD700;
 color:#000;
 padding:10px 20px;
-border-radius:50px;
+border-radius:30px;
 font-weight:bold;
 margin-bottom:25px;
 }
 
 h1{
-font-size:55px;
+font-size:58px;
 color:#FFD700;
 margin-bottom:20px;
 }
 
 .subtitle{
-max-width:800px;
+max-width:850px;
 margin:auto;
-font-size:20px;
-line-height:1.8;
 color:#ddd;
+font-size:20px;
+}
+
+.countdown{
+margin-top:30px;
+font-size:28px;
+font-weight:bold;
+color:#FFD700;
+}
+
+.trust{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
+margin-top:30px;
+}
+
+.trust span{
+background:#111;
+padding:12px 20px;
+border-radius:30px;
+border:1px solid #333;
 }
 
 .workshop-card{
-max-width:600px;
+max-width:650px;
 margin:40px auto;
 background:#111;
 padding:30px;
 border-radius:20px;
 border:1px solid #FFD700;
+box-shadow:0 0 20px rgba(255,215,0,0.15);
 }
 
 .workshop-card p{
@@ -70,24 +113,20 @@ margin-top:25px;
 padding:15px 35px;
 background:#FFD700;
 color:#000;
-font-weight:bold;
 text-decoration:none;
+font-weight:bold;
 border-radius:10px;
-font-size:18px;
 }
 
-.learn,
-.benefits,
-.join,
-.register,
-.faq{
+section{
 padding:80px 20px;
+text-align:center;
 }
 
 h2{
 color:#FFD700;
-margin-bottom:35px;
-font-size:38px;
+font-size:42px;
+margin-bottom:40px;
 }
 
 .cards{
@@ -98,14 +137,16 @@ gap:20px;
 }
 
 .card{
-width:250px;
+width:260px;
 background:#111;
 padding:25px;
 border-radius:15px;
-border:1px solid #333;
+border:1px solid #222;
+transition:0.3s;
 }
 
 .card:hover{
+transform:translateY(-5px);
 border-color:#FFD700;
 }
 
@@ -116,30 +157,54 @@ margin:auto;
 }
 
 li{
-padding:10px;
+padding:12px;
 font-size:18px;
 }
 
 .faq-item{
-max-width:800px;
+max-width:900px;
 margin:15px auto;
 background:#111;
 padding:20px;
-border-radius:10px;
+border-radius:12px;
 text-align:left;
+border:1px solid #222;
+}
+
+.contact-box{
+max-width:700px;
+margin:auto;
+background:#111;
+padding:30px;
+border-radius:15px;
+border:1px solid #FFD700;
 }
 
 footer{
-padding:40px;
 background:#111;
-margin-top:40px;
+padding:40px;
+text-align:center;
 color:#aaa;
+}
+
+.footer-links{
+margin-bottom:20px;
+}
+
+.footer-links a{
+color:#FFD700;
+text-decoration:none;
+margin:0 10px;
 }
 
 @media(max-width:768px){
 
 h1{
 font-size:38px;
+}
+
+nav{
+flex-wrap:wrap;
 }
 
 .card{
@@ -154,11 +219,13 @@ max-width:320px;
 </head>
 
 <body>
+
 <nav>
 <a href="#home">Home</a>
 <a href="#learn">Learn</a>
 <a href="#benefits">Benefits</a>
 <a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
 <a href="#register">Register</a>
 </nav>
 
@@ -174,6 +241,18 @@ LIVE EDUCATIONAL WORKSHOP • 28 JUNE 2026
 Learn probability, risk management, capital management and trading discipline through a structured educational workshop designed for beginners.
 </p>
 
+<div class="countdown" id="countdown">
+Loading Countdown...
+</div>
+
+<div class="trust">
+<span>✓ Beginner Friendly</span>
+<span>✓ Hindi Language</span>
+<span>✓ Live Zoom Workshop</span>
+<span>✓ Educational Program</span>
+<span>✓ Limited Seats</span>
+</div>
+
 <div class="workshop-card">
 
 <p>📅 Date: 28 June 2026</p>
@@ -188,10 +267,7 @@ Register Now
 </a>
 
 </div>
-
-</section>
-
-<section class="learn" id="learn">
+  <section id="learn">
 
 <h2>What You'll Learn</h2>
 
@@ -209,22 +285,7 @@ Register Now
 
 </section>
 
-<section class="join">
-
-<h2>Who Should Join</h2>
-
-<ul>
-<li>✅ Beginners</li>
-<li>✅ New Learners</li>
-<li>✅ Students</li>
-<li>✅ Working Professionals</li>
-<li>✅ People Interested In Probability</li>
-<li>✅ People Interested In Risk Management</li>
-</ul>
-
-</section>
-
-<section class="benefits" id="benefits">
+<section id="benefits">
 
 <h2>Workshop Benefits</h2>
 
@@ -241,13 +302,28 @@ Register Now
 
 </section>
 
-<section class="register" id="register">
+<section>
+
+<h2>Who Should Join</h2>
+
+<ul>
+<li>✅ Beginners</li>
+<li>✅ New Learners</li>
+<li>✅ Students</li>
+<li>✅ Working Professionals</li>
+<li>✅ People Interested In Probability</li>
+<li>✅ People Interested In Risk Management</li>
+</ul>
+
+</section>
+
+<section id="register">
 
 <h2>Reserve Your Seat Today</h2>
 
-<p>Registration Fee: ₹69</p>
-
-<br>
+<p style="font-size:22px;margin-bottom:20px;">
+Registration Fee: ₹69
+</p>
 
 <a class="btn" href="https://forms.gle/gNym3K6sFyNPM1FW6">
 Proceed To Registration
@@ -255,41 +331,129 @@ Proceed To Registration
 
 </section>
 
-<section class="faq" id="faq">
+<section id="faq">
 
 <h2>Frequently Asked Questions</h2>
 
 <div class="faq-item">
-<b>Is this workshop beginner friendly?</b><br>
-Yes, this workshop is designed for beginners.
+<b>1. Is this workshop beginner friendly?</b><br>
+Yes. This workshop is designed specifically for beginners.
 </div>
 
 <div class="faq-item">
-<b>Which platform will be used?</b><br>
-The workshop will be conducted on Zoom.
-</div>
-
-<div class="faq-item">
-<b>What language will be used?</b><br>
+<b>2. What language will be used?</b><br>
 The workshop will be conducted in Hindi.
 </div>
 
 <div class="faq-item">
-<b>How long is the workshop?</b><br>
+<b>3. Which platform will be used?</b><br>
+The workshop will be conducted through Zoom.
+</div>
+
+<div class="faq-item">
+<b>4. What is the duration of the workshop?</b><br>
 The workshop duration is approximately 1 hour.
+</div>
+
+<div class="faq-item">
+<b>5. How will I receive the Zoom link?</b><br>
+The Zoom link will be shared before the workshop.
+</div>
+
+<div class="faq-item">
+<b>6. What is the registration fee?</b><br>
+The registration fee is ₹69.
+</div>
+
+<div class="faq-item">
+<b>7. Will recording be provided?</b><br>
+Recording availability will be informed during the workshop.
+</div>
+
+<div class="faq-item">
+<b>8. Can students join?</b><br>
+Yes, students are welcome to join.
+</div>
+
+<div class="faq-item">
+<b>9. Is prior experience required?</b><br>
+No prior experience is required.
+</div>
+
+<div class="faq-item">
+<b>10. Is this educational only?</b><br>
+Yes. This workshop is strictly for educational purposes.
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<div class="contact-box">
+
+<p><strong>Email:</strong></p>
+
+<p>support@mastercolourtrading.in</p>
+
+<br>
+
+<p>
+For workshop related support and registration queries, please contact us through email.
+</p>
+
 </div>
 
 </section>
 
 <footer>
 
-<p>Master Colour Trading Workshop</p>
+<div class="footer-links">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms & Conditions</a>
+<a href="#">Refund Policy</a>
+</div>
 
-<p>Educational Purpose Only</p>
+<p>© 2026 Master Colour Trading Workshop</p>
 
-<p>No profits, returns or earnings are guaranteed.</p>
+<p style="margin-top:10px;">
+Educational Purpose Only
+</p>
+
+<p style="margin-top:10px;">
+No profits, returns, earnings, success rates or outcomes are guaranteed.
+</p>
 
 </footer>
 
+<script>
+
+const targetDate = new Date("June 28, 2026 20:00:00").getTime();
+
+setInterval(function(){
+
+const now = new Date().getTime();
+
+const distance = targetDate - now;
+
+const days = Math.floor(distance / (1000*60*60*24));
+
+const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+
+const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+
+const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+document.getElementById("countdown").innerHTML =
+days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
+
+},1000);
+
+</script>
+
 </body>
 </html>
+
+
+</section>
