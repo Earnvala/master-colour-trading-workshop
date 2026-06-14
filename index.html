@@ -511,10 +511,8 @@ body: formData
 .then(data => {
 
 if(data=="EXISTS"){
-
-alert("You have already registered with this Email or Mobile Number.");
-
-return;
+  alert("You have already registered.");
+  return;
 
 }
 
